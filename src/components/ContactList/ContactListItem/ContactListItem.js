@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import contactsActions from "../../../redux/contacts/contactsActions";
 
 import s from "./ContactListItem.module.css";
 
@@ -23,4 +26,15 @@ ContactListItem.propTypes = {
   onRemove: PropTypes.func.isRequired,
 };
 
-export default ContactListItem;
+const mapStateToProps = (state, ownProps) => {
+  const item = state.contacts.items.find((item) => item.id === ownProps.id);
+  return {
+    ...item,
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onRemove: () => dispatch(contactsActions.removeContacts(ownProps.id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactListItem);

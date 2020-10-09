@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
-import contactsActions from "../../redux/contacts/contactsActions";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import ContactListItem from "./ContactListItem/ContactListItem";
@@ -10,13 +8,9 @@ import s from "./ContactList.module.css";
 
 const ContactList = ({ contacts, onRemoveContact }) => (
   <TransitionGroup component="ul" className={s.list}>
-    {contacts.map(({ id, ...prop }) => (
-      <CSSTransition key={id} timeout={2500} classNames={s}>
-        <ContactListItem
-          key={id}
-          {...prop}
-          onRemove={() => onRemoveContact(id)}
-        />
+    {contacts.map(({ id }) => (
+      <CSSTransition key={id} timeout={1000} classNames={s} unmountOnExit>
+        <ContactListItem key={id} id={id} />
       </CSSTransition>
     ))}
   </TransitionGroup>
@@ -42,8 +36,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {
-  onRemoveContact: contactsActions.removeContacts,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default connect(mapStateToProps)(ContactList);
