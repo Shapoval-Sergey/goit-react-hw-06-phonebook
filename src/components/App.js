@@ -1,5 +1,4 @@
 import React from "react";
-
 import { CSSTransition } from "react-transition-group";
 
 import ContactForm from "./ContactForm/ContactForm";
@@ -31,11 +30,7 @@ export default function App() {
       >
         <Filter />
       </CSSTransition>
-
-      {/* {visibleContacts.length > 0 && (
-          
-        )} */}
-
+      
       <ContactList />
     </div>
   );

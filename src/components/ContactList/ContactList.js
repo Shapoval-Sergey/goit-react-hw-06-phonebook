@@ -6,7 +6,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import ContactListItem from "./ContactListItem/ContactListItem";
 import s from "./ContactList.module.css";
 
-const ContactList = ({ contacts, onRemoveContact }) => (
+const ContactList = ({ contacts }) => (
   <TransitionGroup component="ul" className={s.list}>
     {contacts.map(({ id }) => (
       <CSSTransition key={id} timeout={1000} classNames={s} unmountOnExit>
@@ -20,8 +20,6 @@ ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
     })
   ),
 };
