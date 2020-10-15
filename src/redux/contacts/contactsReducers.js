@@ -11,12 +11,12 @@ const INITAIL_DATA = [
   { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
 ];
 
-const names = state.map((item) => item.name.toLowerCase());
-const isNotUniqueContact = names.includes(
-  action.payload.contact.name.toLowerCase().trim()
-);
-
 const addContacts = (state, action) => {
+  const names = state.map((item) => item.name.toLowerCase());
+  const isNotUniqueContact = names.includes(
+    action.payload.contact.name.toLowerCase().trim()
+  );
+
   if (isNotUniqueContact) {
     errorMessage(action.payload.contact.name);
     return state;
